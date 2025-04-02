@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="o3dv.min.js"></script>
+    <script>
+        window.addEventListener ('load', () => {
+            // get the parent element of the viewer
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelPath = urlParams.get('model') || './assets/bunny.obj';
+            let parentDiv = document.getElementById ('viewer');
+        
+            // initialize the viewer with the parent element and some parameters
+            let viewer = new OV.EmbeddedViewer (parentDiv, {
+                camera : new OV.Camera (
+                    new OV.Coord3D (3.0, 3.0, 3.0),
+                    new OV.Coord3D (0.0, 0.0, 0.0),
+                    new OV.Coord3D (0.0, 1.0, 0.0),
+                    45.0
+                ),
+                backgroundColor : new OV.RGBAColor (215, 215, 215, 255),
+                defaultColor : new OV.RGBColor (200, 200, 200),
+                edgeSettings : new OV.EdgeSettings (false, new OV.RGBColor (0, 0, 0), 1),
+
+            });
+            let nm = OV.NavigationMode.FreeOrbit;
+            let cnm = viewer.viewer.SetNavigationMode(nm);
+            console.log(cnm);
+            // load a model providing model urls
+            viewer.LoadModelFromUrlList ([
+                modelPath
+            ]);
+        });
+    </script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .online_3d_viewer {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="online_3d_viewer"
+        id="viewer">
+    </div>
+</body>
+</html>
