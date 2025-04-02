@@ -21,3 +21,5 @@ to start a demo with our improved Gradio Model3D component.
 It can be easily modified to support your own 3D application.
 
 You can modify the `viewer.html` to get different rendering effects, such as changing the background color and default model.
+
+ATTENTION: When you use remote services to run this demo and execute port forwarding, the local forwarding port needs to be consistent with the port of the HTTP server in the `demo.py`. The port of the Gradio server does not need to be considered.
